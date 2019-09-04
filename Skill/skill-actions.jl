@@ -48,9 +48,16 @@ function rollerShutterAction(topic, payload)
         Snips.publishEndSession(:no_matched_shutter)
         return true
     else
-        Snips.publishEndSession(:ok)
+        Snips.publishEndSession("")
+        actionText = slots[:action] == "open" ? Snips.langText(:i_open) : Snips.langText(:i_close)
+
         for d in matchedDevices
-            doMove(d, slots)
+            if checkConfig(d)
+                Snips.publishSay("$actionText $(Snips.langText(:roller_shutter))")
+                doMove(d, slots)
+            else
+                Snips.publishSay("$(Snips.langText(:error_ini)) $d")
+            end
         end
     end
 
@@ -126,4 +133,15 @@ function getDevicesFromConfig(slots)
     Snips.printDebug(matchedDevices)
 
     return matchedDevices
+end
+
+
+
+function checkConfig(d)
+
+    Snips.setConfigPrefix(d)
+    return Snips.isConfigValid("room") &&
+           Snips.isConfigValid("name") &&
+           Snips.isConfigValid("driver", regex = r"shelly25") &&
+           Snips.isConfigValid("ip", regex = r"\d+\.\d+\.\d+\.\d+")
 end
