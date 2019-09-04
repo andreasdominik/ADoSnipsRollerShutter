@@ -11,15 +11,14 @@
 #   as Symbols (Julia-style)
 #
 """
-function templateAction(topic, payload)
+    rollerShutterAction(topic, payload)
 
-    Dummyaction for the template.
+Open and close roller shutters.
 """
-function templateAction(topic, payload)
+function rollerShutterAction(topic, payload)
 
     # log:
-    Snips.printLog("action templateAction() started.")
-    Snips.printDebug("""Intent: $(Snips.getIntent())""")
+    Snips.printLog("action rollerShutterAction() started.")
 
     # get my name from config.ini:
     #
@@ -43,4 +42,34 @@ function templateAction(topic, payload)
     Snips.publishEndSession("""$(Snips.langText(:iam)) $myName.
                             $(Snips.langText(:isay)) $word""")
     return true
+end
+
+
+
+function extractSlots(payload)
+
+    slots = Dict()
+    slots[:room] = Snips.extractSlotValue(payload, SLOT_ROOM)
+    if slots[:room] == nothing
+        slots[:room] = Snips.getSiteId()
+    end
+
+    slots[:deviceName] = Snips.extractSlotValue(payload, SLOT_DEVICE)
+    slots[:action] = Snips.extractSlotValue(payload, SLOT_ACTION)
+
+    slots[:percent] = Snips.extractSlotValue(payload, SLOT_PERCENT)
+    if slots[:percent] == nothing
+        slots[:partly] = Snips.extractSlotValue(payload, SLOT_PARTLY)
+        if slots[:partly] != nothing
+            if slots[:partly] == "almost"
+                slots[:percent] = 90
+            elseif slots[:partly] == "threeQuarter"
+                slots[:percent] = 75
+            elseif slots[:partly] == "half"
+                slots[:percent] = 50
+            end
+        end
+    end
+
+    return slots
 end

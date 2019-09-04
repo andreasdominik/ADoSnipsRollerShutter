@@ -21,7 +21,11 @@ Snips.setModule(@__MODULE__)
 # Slots:
 # Name of slots to be extracted from intents:
 #
-const SLOT_WORD = "a_word"
+const SLOT_ROOM = "Room"
+const SLOT_DEVICE = "DeviceName"
+const SLOT_ACTION = "Action"
+const SLOT_PERCENT = "percentClosed"
+const SLOT_PARTLY = "partlyClosed"
 
 # name of entry in config.ini:
 #
