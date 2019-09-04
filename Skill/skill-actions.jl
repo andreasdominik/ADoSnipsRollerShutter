@@ -41,6 +41,19 @@ function rollerShutterAction(topic, payload)
     # get matched devices from config.ini and find correct one:
     #
     matchedDevices = getDevicesFromConfig(slots)
+
+    # move shutters:
+    #
+    if length(matchedDevices) < 1
+        Snips.publishEndSession(:no_matched_shutter)
+        return true
+    else
+        Snips.publishEndSession(:ok)
+        for d in matchedDevices
+            doMove(d, slots)
+        end
+    end
+
     return true
 end
 
