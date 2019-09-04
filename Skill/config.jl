@@ -29,7 +29,11 @@ const SLOT_PARTLY = "partlyClosed"
 
 # name of entry in config.ini:
 #
-const INI_MY_NAME = "my_name"
+const INI_DEVICES = "devices"
+const INI_ROOM = "room"
+const INI_NAME = "name"
+const INI_DRIVER = "driver"
+const INI_IP = "ip"
 
 #
 # link between actions and intents:

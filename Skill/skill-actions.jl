@@ -18,29 +18,29 @@ Open and close roller shutters.
 function rollerShutterAction(topic, payload)
 
     # log:
+    #
     Snips.printLog("action rollerShutterAction() started.")
 
-    # get my name from config.ini:
+    # find the device and room:
     #
-    myName = Snips.getConfig(INI_MY_NAME)
-    if myName == nothing
-        Snips.publishEndSession(:noname)
-        return false
+    slots = extractSlots(payload)
+    Snips.printDebug(slots)
+
+    # ignore intent if it is not a shutter!
+    #
+    if  slots == nothing || slots[:device] == nothing
+        Snips.printLog("No device found in intent.")
+        return true
     end
 
-    # get the word to repeat from slot:
-    #
-    word = Snips.extractSlotValue(payload, SLOT_WORD)
-    if word == nothing
+    if !(slots[:action] in ["open", "close"])
         Snips.publishEndSession(:dunno)
         return true
     end
 
-    # say who you are:
+    # get matched devices from config.ini and find correct one:
     #
-    Snips.publishSay(:bravo)
-    Snips.publishEndSession("""$(Snips.langText(:iam)) $myName.
-                            $(Snips.langText(:isay)) $word""")
+    matchedDevices = getDevicesFromConfig(slots)
     return true
 end
 
@@ -72,4 +72,45 @@ function extractSlots(payload)
     end
 
     return slots
+end
+
+
+
+
+function getDevicesFromConfig(slots)
+
+    devices = Snips.getConfig(INI_DEVICES, multiple = true)
+    Snips.printDebug(devices)
+    Snips.printDebug(slots)
+
+
+    matchedDevices = []
+    # add all devices in house:
+    #
+    if slots[:deviceName] == "all" && slots[:room] == "house"
+        matchedDevices = devices
+
+    # add all devices in room:
+    #
+    elseif slots[:deviceName] == "all"
+        for d in devices
+            room = Snips.getConfig(INI_ROOM, onePrefix = d)
+            if  room == slots[:room]
+                push!(matchedDevices, d)
+            end
+        end
+    # only device with matching name:
+    #
+    else
+        for d in devices
+            room = Snips.getConfig(INI_ROOM, onePrefix = d)
+            name = Snips.getConfig(INI_NAME, onePrefix = d)
+            if  room == slots[:room] && name == slots[:deviceName]
+                push!(matchedDevices, d)
+            end
+        end
+    end
+    Snips.printDebug(matchedDevices)
+
+    return matchedDevices
 end
