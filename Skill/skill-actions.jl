@@ -28,7 +28,7 @@ function rollerShutterAction(topic, payload)
 
     # ignore intent if it is not a shutter!
     #
-    if  slots == nothing || slots[:device] == nothing
+    if  slots == nothing || slots[:deviceName] == nothing
         Snips.printLog("No device found in intent.")
         return true
     end
@@ -41,6 +41,7 @@ function rollerShutterAction(topic, payload)
     # get matched devices from config.ini and find correct one:
     #
     matchedDevices = getDevicesFromConfig(slots)
+    Snips.printDebug("matched: $matchedDevices")
 
     # move shutters:
     #
@@ -52,8 +53,11 @@ function rollerShutterAction(topic, payload)
         actionText = slots[:action] == "open" ? Snips.langText(:i_open) : Snips.langText(:i_close)
 
         for d in matchedDevices
+            Snips.printDebug("Try device $d")
             if checkConfig(d)
-                Snips.publishSay("$actionText $(Snips.langText(:roller_shutter))")
+                comment = Snips.getConfig("comment", onePrefix = d)
+                Snips.printDebug("config checked for $d, $comment")
+                Snips.publishSay("$actionText $(Snips.langText(:roller_shutter)) $comment")
                 doMove(d, slots)
             else
                 Snips.publishSay("$(Snips.langText(:error_ini)) $d")
@@ -75,9 +79,17 @@ function extractSlots(payload)
     end
 
     slots[:deviceName] = Snips.extractSlotValue(payload, SLOT_DEVICE)
+    if slots[:deviceName] == nothing
+        slots[:deviceName] = "any"
+    end
+
     slots[:action] = Snips.extractSlotValue(payload, SLOT_ACTION)
 
-    slots[:percent] = Snips.extractSlotValue(payload, SLOT_PERCENT)
+    try
+        slots[:percent] = tryparse(Int, Snips.extractSlotValue(payload, SLOT_PERCENT))
+    catch
+        slots[:percent] = nothing
+    end
     if slots[:percent] == nothing
         slots[:partly] = Snips.extractSlotValue(payload, SLOT_PARTLY)
         if slots[:partly] != nothing
@@ -100,14 +112,22 @@ end
 function getDevicesFromConfig(slots)
 
     devices = Snips.getConfig(INI_DEVICES, multiple = true)
-    Snips.printDebug(devices)
-    Snips.printDebug(slots)
+    Snips.printDebug("config.ini: $devices")
+    Snips.printDebug("slots: $slots")
 
 
     matchedDevices = []
+    # if there is only one shutter in the room, use this:
+    #
+    inRoom = shuttersInRoom(slots[:room])
+    Snips.printDebug("inRoom: $inRoom")
+
+    if length(inRoom) == 1
+        push!(matchedDevices, inRoom[1])
+
     # add all devices in house:
     #
-    if slots[:deviceName] == "all" && slots[:room] == "house"
+    elseif slots[:deviceName] == "all" && slots[:room] == "house"
         matchedDevices = devices
 
     # add all devices in room:
@@ -122,10 +142,10 @@ function getDevicesFromConfig(slots)
     # only device with matching name:
     #
     else
-        for d in devices
-            room = Snips.getConfig(INI_ROOM, onePrefix = d)
-            name = Snips.getConfig(INI_NAME, onePrefix = d)
-            if  room == slots[:room] && name == slots[:deviceName]
+        for d in inRoom
+            names = Snips.getConfig(INI_NAME, onePrefix = d, multiple = true)
+            Snips.printDebug("iterate in Room: $d, $names")
+            if  slots[:deviceName] in names
                 push!(matchedDevices, d)
             end
         end
@@ -142,6 +162,7 @@ function checkConfig(d)
     Snips.setConfigPrefix(d)
     return Snips.isConfigValid("room") &&
            Snips.isConfigValid("name") &&
+           Snips.isConfigValid("comment") &&
            Snips.isConfigValid("driver", regex = r"shelly25") &&
            Snips.isConfigValid("ip", regex = r"\d+\.\d+\.\d+\.\d+")
 end

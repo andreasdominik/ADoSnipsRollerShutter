@@ -46,9 +46,7 @@ const INI_IP = "ip"
 # Language-dependent settings:
 #
 if LANG == "de"
-    Snips.registerIntentAction("pleaseRepeatDE", templateAction)
-elseif LANG == "en"
-    Snips.registerIntentAction("pleaseRepeatEN", templateAction)
+    Snips.registerIntentAction("rollerUpDownDE", rollerShutterAction)
 else
-    Snips.registerIntentAction("pleaseRepeatEN", templateAction)
+    Snips.registerIntentAction("rollerUpDownDE", rollerShutterAction)
 end
