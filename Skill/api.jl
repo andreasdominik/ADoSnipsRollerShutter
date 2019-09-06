@@ -26,7 +26,8 @@ Only close to perc percent if clouds are < limit and > 1h before sunset
 function doSunshield(device, clouds)
 
     ip = Snips.getConfig(INI_IP, onePrefix = device)
-    perc = Snips.getConfig(INI_SUN_SHIELD, onePrefix = device)
+    perc = tryparse(Int, Snips.getConfig(INI_SUN_SHIELD, onePrefix = device))
+    perc == nothing && perc = 15
     weather = Snips.getOpenWeather()
 
     # open if sunset is coming soon:

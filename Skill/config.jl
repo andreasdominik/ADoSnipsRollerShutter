@@ -37,6 +37,11 @@ const INI_DRIVER = "driver"
 const INI_SUN_SHIELD = "sun_shield"
 const INI_IP = "ip"
 
+# shield the sun only if less then 75 perc clouds:
+#
+const SUNSHIELD_CLUUD_LIMIT = 75
+
+
 #
 # link between actions and intents:
 # intent is linked to action{Funktion}
@@ -52,3 +57,4 @@ if LANG == "de"
 else
     Snips.registerIntentAction("rollerUpDownDE", rollerShutterAction)
 end
+Snips.registerTriggerAction("ADoSnipsRollerShutter", triggerRollerShutter)

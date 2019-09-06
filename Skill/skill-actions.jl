@@ -108,6 +108,65 @@ end
 
 
 
+"""
+    triggerRollerShutter(topic, payload)
+
+The trigger must have the following JSON format:
+```
+    {
+      "target" : "qnd/trigger/andreasdominik:ADoSnipsRollerShutter",
+      "origin" : "ADoSnipsScheduler",
+      "sessionId": "1234567890abcdef",
+      "siteId" : "default",
+      "time" : "timeString",
+      "trigger" : {
+        "device" : "small_lanay",
+        "action" : "open"
+      }
+    }
+```
+Commands "open" or "close" or "sunshield" will be executed with the api.
+`device` is unique device name defined in `config.ini`
+"""
+function triggerRollerShutter(topic, payload)
+
+    Snips.printLog("action triggerRollerShutter() started.")
+    Snips.printDebug("Trigger: $payload")
+
+    # test if trigger is complete:
+    #
+    payload isa Dict || return false
+    haskey( payload, :trigger) || return false
+    trigger = payload[:trigger]
+
+    haskey(trigger, :command) || return false
+    trigger[:command] isa AbstractString || return false
+    command = trigger[:command]
+    command in ["open", "close", "sunshield"] || return false
+
+    # re-read the config.ini (in case params have changed):
+    #
+    Snips.readConfig("$APP_DIR")
+
+    # get device params from config.ini:
+    #
+    if !checkConfig(trigger["device"])
+        Snips.printLog("ERROR: Cannot read config values for triggerRollerShutter!")
+        return false
+    end
+
+    if command in ["close"]
+        doMove(trigger[:device], Dict(:action => "close", :percent => nothing))
+    elseif command == "sunshield"
+        cloudLimit = 75
+        soSunshield(trigger[:device], coudLimit)
+    else
+        doMove(trigger[:device], Dict(:action => "open", :percent => nothing))
+    end
+end
+
+
+
 
 function getDevicesFromConfig(slots)
 
