@@ -32,7 +32,9 @@ const SLOT_PARTLY = "partlyClosed"
 const INI_DEVICES = "devices"
 const INI_ROOM = "room"
 const INI_NAME = "name"
+const INI_COMMENT = "comment"
 const INI_DRIVER = "driver"
+const INI_SUN_SHIELD = "sun_shield"
 const INI_IP = "ip"
 
 #

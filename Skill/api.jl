@@ -23,9 +23,10 @@ end
 """
 Only close to perc percent if clouds are < limit and > 1h before sunset
 """
-function doSunshield(device, clouds; perc = 85)
+function doSunshield(device, clouds)
 
     ip = Snips.getConfig(INI_IP, onePrefix = device)
+    perc = Snips.getConfig(INI_SUN_SHIELD, onePrefix = device)
     weather = Snips.getOpenWeather()
 
     # open if sunset is coming soon:
