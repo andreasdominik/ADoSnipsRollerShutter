@@ -20,6 +20,32 @@ function doMove(device, slots)
 end
 
 
+"""
+Only close to perc percent if clouds are < limit and > 1h before sunset
+"""
+function doSunshield(device, clouds; perc = 85)
+
+    ip = Snips.getConfig(INI_IP, onePrefix = device)
+    weather = Snips.getOpenWeather()
+
+    # open if sunset is coming soon:
+    #
+    if weather != nothing && weather[:sunset] < (Dates.now() + Dates.Hour(1))
+        Snips.moveShelly25roller(ip, :open)
+
+    # open if clody and close if sunny:
+    #
+    elseif weather != nothing && weather[:clouds] != nothing &&
+           weather[:clouds] > clouds
+        Snips.moveShelly25roller(ip, :open)
+    else
+        Snips.moveShelly25roller(ip, :go_to, pos = perc)
+    end
+end
+
+
+
+
 
 function shuttersInRoom(room)
 
