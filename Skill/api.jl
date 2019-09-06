@@ -27,21 +27,26 @@ function doSunshield(device, clouds)
 
     ip = Snips.getConfig(INI_IP, onePrefix = device)
     perc = tryparse(Int, Snips.getConfig(INI_SUN_SHIELD, onePrefix = device))
-    perc == nothing && perc = 15
+    if perc == nothing
+        perc = 15
+    end
     weather = Snips.getOpenWeather()
 
     # open if sunset is coming soon:
     #
     if weather != nothing && weather[:sunset] < (Dates.now() + Dates.Hour(1))
+        Snips.printLog("opening sun shield beacuse of sunset.")
         Snips.moveShelly25roller(ip, :open)
 
     # open if clody and close if sunny:
     #
     elseif weather != nothing && weather[:clouds] != nothing &&
            weather[:clouds] > clouds
+        Snips.printLog("opening sun shield beacuse of clouds.")
         Snips.moveShelly25roller(ip, :open)
     else
-        Snips.moveShelly25roller(ip, :go_to, pos = perc)
+        Snips.printLog("closing sun shield beacuse of sun.")
+        Snips.moveShelly25roller(ip, :to_pos, pos = perc)
     end
 end
 

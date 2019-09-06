@@ -16,6 +16,8 @@ include("$FRAMEWORK_DIR/SnipsHermesQnD/src/SnipsHermesQnD.jl")
 import .SnipsHermesQnD
 Snips = SnipsHermesQnD
 
+import Dates
+
 
 Snips.readConfig("$APP_DIR")
 Snips.readConfig("$FRAMEWORK_DIR")

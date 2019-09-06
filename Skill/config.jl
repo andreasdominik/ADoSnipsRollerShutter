@@ -34,12 +34,12 @@ const INI_ROOM = "room"
 const INI_NAME = "name"
 const INI_COMMENT = "comment"
 const INI_DRIVER = "driver"
-const INI_SUN_SHIELD = "sun_shield"
+const INI_SUN_SHIELD = "sunshield"
 const INI_IP = "ip"
 
 # shield the sun only if less then 75 perc clouds:
 #
-const SUNSHIELD_CLUUD_LIMIT = 75
+const SUNSHIELD_CLOUD_LIMIT = 75
 
 
 #

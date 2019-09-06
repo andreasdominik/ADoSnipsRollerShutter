@@ -139,9 +139,9 @@ function triggerRollerShutter(topic, payload)
     haskey( payload, :trigger) || return false
     trigger = payload[:trigger]
 
-    haskey(trigger, :command) || return false
-    trigger[:command] isa AbstractString || return false
-    command = trigger[:command]
+    haskey(trigger, :action) || return false
+    trigger[:action] isa AbstractString || return false
+    command = trigger[:action]
     command in ["open", "close", "sunshield"] || return false
 
     # re-read the config.ini (in case params have changed):
@@ -150,17 +150,20 @@ function triggerRollerShutter(topic, payload)
 
     # get device params from config.ini:
     #
-    if !checkConfig(trigger["device"])
+    if !checkConfig(trigger[:device])
         Snips.printLog("ERROR: Cannot read config values for triggerRollerShutter!")
         return false
     end
 
-    if command in ["close"]
+    if command == "close"
+        Snips.printLog("closing roller shutter $(trigger[:device])")
         doMove(trigger[:device], Dict(:action => "close", :percent => nothing))
     elseif command == "sunshield"
-        cloudLimit = 75
-        soSunshield(trigger[:device], coudLimit)
+        cloudLimit = SUNSHIELD_CLOUD_LIMIT
+        Snips.printLog("sun shield for roller shutter $(trigger[:device])")
+        doSunshield(trigger[:device], cloudLimit)
     else
+        Snips.printLog("opening roller shutter $(trigger[:device])")
         doMove(trigger[:device], Dict(:action => "open", :percent => nothing))
     end
 end
@@ -224,5 +227,5 @@ function checkConfig(d)
            Snips.isConfigValid(INI_COMMENT) &&
            Snips.isConfigValid(INI_DRIVER, regex = r"shelly25") &&
            Snips.isConfigValid(INI_SUN_SHIELD, regex = r"^\d+$") &&
-           Snips.isConfigValid("ip", regex = r"\d+\.\d+\.\d+\.\d+")
+           Snips.isConfigValid(INI_IP, regex = r"\d+\.\d+\.\d+\.\d+")
 end
