@@ -1,4 +1,4 @@
-# ADoSnipsTemplate
+# ADoSnipsRollerShutter
 
 This is a skill for the SnipsHermesQnD framework for Snips.ai
 written in Julia.
