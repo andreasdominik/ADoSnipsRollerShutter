@@ -1,6 +1,6 @@
 # ADoSnipsTemplate
 
-This is a template skill for the SnipsHermesQnD framework for Snips.ai
+This is a skill for the SnipsHermesQnD framework for Snips.ai
 written in Julia.
 
  The full documentation is just work-in-progress!
