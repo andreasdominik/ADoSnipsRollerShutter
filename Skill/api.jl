@@ -68,6 +68,7 @@ function shuttersInRoom(room)
             if Snips.getConfig(INI_ROOM) == room
                 push!(devices, d)
             end
+            Snips.resetConfigPrefix()
         end
     end
     return devices
