@@ -174,6 +174,8 @@ end
 function getDevicesFromConfig(slots)
 
     devices = Snips.getConfig(INI_DEVICES, multiple = true)
+    devices == nothing && devices = ["no devices found in config"]
+    slots == nothing && slots == "no slots in payloud"
     Snips.printDebug("config.ini: $devices")
     Snips.printDebug("slots: $slots")
 
