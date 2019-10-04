@@ -58,10 +58,12 @@ function shuttersInRoom(room)
 
     devices = []
     if room == "house"
-        append!(devices, Snips.getConfig(INI_DEVICES))
+        append!(devices, Snips.getConfig(INI_DEVICES, multiple = true))
 
     else
-        for d in Snips.getConfig(INI_DEVICES)
+        iniDevices = Snips.getConfig(INI_DEVICES, multiple = true)
+        Snips.printDebug(iniDevices)
+        for d in iniDevices
             Snips.setConfigPrefix(d)
             if Snips.getConfig(INI_ROOM) == room
                 push!(devices, d)
