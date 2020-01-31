@@ -1,6 +1,6 @@
 [global]
 language=de
-devices=garden_window,small_lanay,dining
+devices=garden_window,small_lanay,dining_lanay
 
 # roller shutter to garden:
 #
@@ -8,8 +8,8 @@ garden_window:room=default
 garden_window:name=big,garden
 garden_window:comment=am Gartenfenster
 garden_window:driver=shelly25
-garden_window:sunshield=15
-garden_window:ip=192.168.0.200
+garden_window:sunshield=38
+garden_window:ip=192.168.42.173
 
 # roller shutter to lanay:
 #
@@ -18,14 +18,14 @@ small_lanay:name=small
 small_lanay:comment=an der Terassentür
 small_lanay:driver=shelly25
 small_lanay:sunshield=42
-small_lanay:ip=192.168.0.201
+small_lanay:ip=192.168.42.172
 
 # dining:
 #
-dining:room=default
-dining:name=lanay,dining
-dining:comment=im Esszimmer
-dining:driver=shelly25
-dining:sunshield=15
-dining:ip=192.168.0.202
+dining_lanay:room=default
+dining_lanay:name=lanay,dining
+dining_lanay:comment=im Esszimmer
+dining_lanay:driver=shelly25
+dining_lanay:sunshield=38
+dining_lanay:ip=192.168.42.174
 [secret]
