@@ -1,0 +1,86 @@
+# Intent definition for Lights skill
+#
+#  (c) A. Dominik, 2020
+#
+skill = "ADoSnipsRollerShutter"
+developer = "andreasdominik"
+
+
+[inventory]
+intents = ["rollerUpDownDE"]
+slots = ["room", "deviceName", "Action", "percentClosed", "partlyClosed"]
+
+
+# define slots:
+# Types: Any/List/InstantTime/Currency/Number/Ordinal/...
+#
+[room]
+slot_type = "ListOfValues"
+allow_empty = true
+
+        [room.synonyms]
+        "house" = ["ganzen Haus", "ganzes Haus", "Haus", "überall"]
+        "dining" = ["Esszimmer"]
+        "stairs" = ["Treppenhaus", "Flur"]
+        "kitchen" = ["Küche"]
+        "bedroom" = "Schlafzimmer"
+        "guest" = "Gästezimmer"
+        "Andreas" = ["Andreas Büro", "Büro von Andreas", "ADos Büro"]
+        "default" = ["wohnzimmer"]
+
+[deviceName]
+slot_type = "ListOfValues"
+allow_empty = true
+
+        [deviceName.synonyms]
+        "big" = ["großen", "groß", "(?:am|zum) großen Fenster"]
+        "garden" = ["(?:am|zum) Garten", "(?:am|zum) Gartenfenster", "Garten"]
+        "small" = ["kleinen", "klein"]
+        "lanay" = ["(?:an der|zur) Terasse", "(?:am|zum) Lanay", "(?:an der) Terassentür"]
+        "front" = ["vorne", "vorderen", "am vorderen Fenster"]
+        "back" = ["hinten", "hinteren", "am hinteren Fenster"]
+        "all" = ["alle"]
+
+[Action]
+slot_type = "ListOfValues"
+
+        [Action.synonyms]
+        "open" = ["öffne", "auf$"]
+        "close" = ["schließe", "zu$"]
+
+[percentClosed]
+slot_type = "Number"
+
+[partlyClosed]
+slot_type = "ListOfValues"
+
+        [partlyClosed.synonyms]
+        "almost" = ["fast ganz", "fast"]
+        "half" = ["halb", "zur Hälfte"]
+        "threeQuarter" = ["drei viertel", "dreiviertel"]
+
+
+
+# define phrases for intent recognition:
+# exact, regex, part
+#
+[rollerUpDownDE]
+disable_on_start = false
+
+roller_a = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
+roller_b = "partial: <<bitte|>> mach <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
+roller_c = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
+roller_d = "partial: <<bitte|>> mach <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
+
+roller_m = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>>"
+roller_n = "partial: mach <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
+roller_o = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>>"
+roller_p = "partial: mach <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
+
+roller_u = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>>"
+roller_v = "partial: mach <<bitte|>> den <<deviceName>> Rollladen <<im|in|in der|>> <<room>> <<Action>>"
+roller_w = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>>"
+roller_x = "partial: mach <<bitte|>> den Rollladen <<deviceName>> <<im|in|in der|>> <<room>> <<Action>>"
+
+roller_y = "partial: <<bitte|>> <<Action>> <<bitte|>> alle Rollläden <<im|in|in der|>> <<room>>"
+roller_z = "partial: mach <<bitte|>> alle Rollläden <<im|in|in der|>> <<room>> <<Action>>"
