@@ -8,6 +8,13 @@ written in Julia.
 
  [Framework Documentation](https://andreasdominik.github.io/ADoSnipsQnD/dev)
 
+### Susi is not Snips:
+NLU (natural language understanding) definition files are added for
+(English and) German and make it possible to use the skill with
+Susi (Susi is no Snips) without Snips or the Snips console!
+
+
+
 ## Skill
 
 The skill makes it possible to open and close roller shutters.

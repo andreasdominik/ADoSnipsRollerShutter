@@ -56,7 +56,7 @@ slot_type = "ListOfValues"
 
         [partlyClosed.synonyms]
         "almost" = ["fast ganz", "fast"]
-        "half" = ["halb", "zur Hälfte"]
+        "half" = ["halb", "zur Hälfte", "zum Sonnenschutz", "auf Sonnenschutz", "Sonnenschutz"]
         "threeQuarter" = ["drei viertel", "dreiviertel"]
 
 

@@ -1,0 +1,75 @@
+# Intent definition for Lights skill
+#
+#  (c) A. Dominik, 2020
+#
+skill = "ADoSnipsRollerShutter"
+developer = "andreasdominik"
+
+
+[inventory]
+intents = ["rollerUpDownDE"]
+slots = ["room", "deviceName", "Action", "percentClosed", "partlyClosed"]
+
+
+# define slots:
+# Types: Any/List/InstantTime/Currency/Number/Ordinal/...
+#
+[room]
+slot_type = "ListOfValues"
+allow_empty = true
+
+        [room.synonyms]
+        "house" = ["whole house", "entire house", "house", "everywhere"]
+        "dining" = ["dining room", "eating room"]
+        "stairs" = ["staircase", "stairwell", "stairs"]
+        "kitchen" = ["kitchen"]
+        "bedroom" = "bedroom"
+        "guest" = ["guestroom", "guest room"]
+        "default" = ["livingroom", "living-room", "living room"]
+
+[deviceName]
+slot_type = "ListOfValues"
+allow_empty = true
+
+        [deviceName.synonyms]
+        "big" = ["big", "(?:at|of|) the big window"]
+        "garden" = ["(?:at|of|to the) garden", "(?:at|of) garden window", "garden"]
+        "small" = ["small"]
+        "lanay" = ["(?:to the|of) terrace", "(?:to the|of) terasse", "to the lanay"]
+        "front" = ["front", "at the front windows?"]
+        "back" = ["back", "rear", "at th erear window"]
+        "all" = ["all"]
+
+[Action]
+slot_type = "ListOfValues"
+
+        [Action.synonyms]
+        "open" = ["open", "raise"]
+        "close" = ["close", "pull down", "down"]
+
+[percentClosed]
+slot_type = "Number"
+
+[partlyClosed]
+slot_type = "ListOfValues"
+
+        [partlyClosed.synonyms]
+        "almost" = ["almost"]
+        "half" = ["halfway", "half", "to the sun protection", "(?:to|as|for) sun protection", "sun protection"]
+        "threeQuarter" = ["three quarter", "threequarter"]
+
+
+
+# define phrases for intent recognition:
+# exact, regex, part
+#
+[rollerUpDownDE]
+disable_on_start = false
+
+roller_a = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<to|with|at|>> <<percentClosed>> percent"
+
+roller_m = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<partlyClosed>>"
+
+roller_u = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>>"
+
+roller_y = "partial: <<please|>> <<Action>> all <<roller shutters|shutters>>
