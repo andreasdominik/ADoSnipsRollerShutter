@@ -33,12 +33,18 @@ slot_type = "ListOfValues"
 allow_empty = true
 
         [deviceName.synonyms]
-        "big" = ["großen", "groß", "(?:am|zum) großen Fenster"]
-        "garden" = ["(?:am|zum) Garten", "(?:am|zum) Gartenfenster", "Garten"]
-        "small" = ["kleinen", "klein"]
-        "lanay" = ["(?:an der|zur) Terasse", "(?:am|zum) Lanay", "(?:an der) Terassentür"]
-        "front" = ["vorne", "vorderen", "am vorderen Fenster"]
-        "back" = ["hinten", "hinteren", "am hinteren Fenster"]
+        # "big" = ["großen", "groß", "(?:am|zum) großen Fenster"]
+        # "garden" = ["(?:am|zum) Garten", "(?:am|zum) Gartenfenster", "Garten"]
+        # "small" = ["kleinen", "klein"]
+        # "lanay" = ["(?:an der|zur) Terasse", "(?:am|zum) Lanay", "(?:an der) Terassentür"]
+        # "front" = ["vorne", "vorderen", "am vorderen Fenster"]
+        # "back" = ["hinten", "hinteren", "am hinteren Fenster"]
+        # "all" = ["alle"]
+        "garden_window" = ["großen", "groß", "(?:am|zum) großen Fenster",
+                          "(?:am|zum) Garten", "(?:am|zum) Gartenfenster", "Garten"]
+        "small_lanay" = ["kleinen", "klein",
+                        "(?:an der|zur) Terasse", "(?:am|zum) Lanay", "(?:an der) Terassentür"]
+        "dining_lanay" = ["im Esszimmer"]
         "all" = ["alle"]
 
 [Action]
