@@ -7,7 +7,7 @@ developer = "andreasdominik"
 
 
 [inventory]
-intents = ["rollerUpDownDE"]
+intents = ["rollerUpDown]
 slots = ["room", "deviceName", "Action", "percentClosed", "partlyClosed"]
 
 

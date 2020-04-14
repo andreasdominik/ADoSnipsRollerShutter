@@ -59,11 +59,5 @@ const SUNSHIELD_CLOUD_LIMIT = 77
 #   * if the siteId matches, if site is  defined in config.ini
 #     (such as: "switch TV in room abc").
 #
-# Language-dependent settings:
-#
-if LANG == "de"
-    Snips.registerIntentAction("rollerUpDownDE", rollerShutterAction)
-else
-    Snips.registerIntentAction("rollerUpDownDE", rollerShutterAction)
-end
+Snips.registerIntentAction("rollerUpDown", rollerShutterAction)
 Snips.registerTriggerAction("ADoSnipsRollerShutter", triggerRollerShutter)
