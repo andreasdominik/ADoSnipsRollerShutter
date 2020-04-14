@@ -27,11 +27,11 @@ allow_empty = true
         "guest" = ["guestroom", "guest room"]
         "default" = ["livingroom", "living-room", "living room"]
 
-[deviceName]
+[DeviceName]
 slot_type = "ListOfValues"
 allow_empty = true
 
-        [deviceName.synonyms]
+        [DeviceName.synonyms]
         "big" = ["big", "(?:at|of|) the big window"]
         "garden" = ["(?:at|of|to the) garden", "(?:at|of) garden window", "garden"]
         "small" = ["small"]
