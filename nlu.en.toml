@@ -8,7 +8,7 @@ developer = "andreasdominik"
 
 [inventory]
 intents = ["rollerUpDown"]
-slots = ["room", "deviceName", "Action", "percentClosed", "partlyClosed"]
+slots = ["room", "DeviceName", "Action", "percentClosed", "partlyClosed"]
 
 
 # define slots:
@@ -66,10 +66,10 @@ slot_type = "ListOfValues"
 [rollerUpDownDE]
 disable_on_start = false
 
-roller_a = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<to|with|at|>> <<percentClosed>> percent"
+roller_a = "partial: <<please|>> <<Action>> the <<DeviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<to|with|at|>> <<percentClosed>> percent"
 
-roller_m = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<partlyClosed>>"
+roller_m = "partial: <<please|>> <<Action>> the <<DeviceName>> <<roller shutter|shutter>> <<in the|>> <<room>> <<partlyClosed>>"
 
-roller_u = "partial: <<please|>> <<Action>> the <<deviceName>> <<roller shutter|shutter>> <<in the|>> <<room>>"
+roller_u = "partial: <<please|>> <<Action>> the <<DeviceName>> <<roller shutter|shutter>> <<in the|>> <<room>>"
 
 roller_y = "partial: <<please|>> <<Action>> all <<roller shutters|shutters>>
