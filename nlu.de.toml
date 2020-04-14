@@ -65,7 +65,7 @@ slot_type = "ListOfValues"
 # define phrases for intent recognition:
 # exact, regex, part
 #
-[rollerUpDownDE]
+[rollerUpDown]
 disable_on_start = false
 
 roller_a = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
