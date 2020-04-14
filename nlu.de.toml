@@ -68,20 +68,20 @@ slot_type = "ListOfValues"
 [rollerUpDown]
 disable_on_start = false
 
-roller_a = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
-roller_b = "partial: <<bitte|>> mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
-roller_c = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
-roller_d = "partial: <<bitte|>> mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
+roller_a = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
+roller_b = "partial: <<bitte|>> mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
+roller_c = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent"
+roller_d = "partial: <<bitte|>> mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<zu|um|auf|>> <<percentClosed>> Prozent <<Action>>"
 
-roller_m = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>>"
-roller_n = "partial: mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
-roller_o = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>>"
-roller_p = "partial: mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
+roller_m = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>>"
+roller_n = "partial: mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
+roller_o = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>>"
+roller_p = "partial: mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<partlyClosed>> <<Action>>"
 
-roller_u = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>>"
-roller_v = "partial: mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<Action>>"
-roller_w = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>>"
-roller_x = "partial: mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<Action>>"
+roller_u = "partial: <<bitte|>> <<Action>> <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>>"
+roller_v = "partial: mach <<bitte|>> den Rollladen <<DeviceName>> <<im|in|in der|>> <<room>> <<Action>>"
+roller_w = "partial: <<bitte|>> <<Action>> <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>>"
+roller_x = "partial: mach <<bitte|>> den <<DeviceName>> Rollladen <<im|in|in der|>> <<room>> <<Action>>"
 
 roller_y = "partial: <<bitte|>> <<Action>> <<bitte|>> alle Rollläden <<im|in|in der|>> <<room>>"
 roller_z = "partial: mach <<bitte|>> alle Rollläden <<im|in|in der|>> <<room>> <<Action>>"
