@@ -3,7 +3,7 @@
 # set CONTINUE_WO_HOTWORD to true to be able to chain
 # commands without need of a hotword in between:
 #
-const CONTINUE_WO_HOTWORD = true
+const CONTINUE_WO_HOTWORD = false
 const DEVELOPER_NAME = "andreasdominik"
 Snips.setDeveloperName(DEVELOPER_NAME)
 Snips.setModule(@__MODULE__)

@@ -166,6 +166,7 @@ function triggerRollerShutter(topic, payload)
         Snips.printLog("opening roller shutter $(trigger[:device])")
         doMove(trigger[:device], Dict(:action => "open", :percent => nothing))
     end
+    return false
 end
 
 
@@ -234,7 +235,7 @@ function checkConfig(d)
            Snips.isConfigValid(INI_DRIVER, regex = r"shelly25") &&
            Snips.isConfigValid(INI_SUN_SHIELD, regex = r"^\d+$") &&
            Snips.isConfigValid(INI_IP, regex = r"\d+\.\d+\.\d+\.\d+")
-           
+
     Snips.resetConfigPrefix()
     return success
 end
