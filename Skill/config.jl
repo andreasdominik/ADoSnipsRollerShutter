@@ -48,7 +48,7 @@ const INI_IP = "ip"
 
 # shield the sun only if less then 75 perc clouds:
 #
-const SUNSHIELD_CLOUD_LIMIT = 77
+const SUNSHIELD_CLOUD_LIMIT = 80
 
 
 #
