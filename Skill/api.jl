@@ -34,7 +34,7 @@ function doSunshield(device, clouds)
 
     # open if sunset is coming soon:
     #
-    if weather != nothing && weather[:sunset] < (Dates.now() + Dates.Hour(1))
+    if weather != nothing && weather[:sunset] < Dates.now()
         Snips.printLog("opening sun shield beacuse of sunset.")
         Snips.moveShelly25roller(ip, :open)
 
