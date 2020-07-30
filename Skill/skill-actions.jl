@@ -227,16 +227,22 @@ end
 
 function checkConfig(d)
 
+    # entries for device:
+    #
     Snips.setConfigPrefix(d)
     success  = Snips.isConfigValid(INI_ROOM) &&
            Snips.isConfigValid(INI_NAME) &&
            Snips.isConfigValid(INI_COMMENT) &&
            Snips.isConfigValid(INI_DRIVER, regex = r"shelly25") &&
            Snips.isConfigValid(INI_SUN_SHIELD, regex = r"^\d+$") &&
-           Snips.isConfigValid(INI_SUNSET, regex = r"^\d+$") &&
-           Snips.isConfigValid(INI_CLOUD_LIMIT, regex = r"^\d+$") &&
            Snips.isConfigValid(INI_IP, regex = r"\d+\.\d+\.\d+\.\d+")
 
+
+    # global entries:
+    #
     Snips.resetConfigPrefix()
+    success = success &&
+              Snips.isConfigValid(INI_SUNSET, regex = r"^\d+$") &&
+              Snips.isConfigValid(INI_CLOUD_LIMIT, regex = r"^\d+$")
     return success
 end

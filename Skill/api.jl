@@ -34,7 +34,7 @@ function doSunshield(device)
 
     # open if sunset is coming soon:
     #
-    sunsetMinutes = Snips.getConfig(INI_SUNSET, onePrefix = device)
+    sunsetMinutes = Snips.getConfig(INI_SUNSET)
     if weather != nothing && weather[:sunset] < Dates.now() +
                                                 Dates.Minute(sunsetMinutes)
         Snips.printLog("opening sun shield beacuse of sunset.")
@@ -43,7 +43,7 @@ function doSunshield(device)
     # open if clody and close if sunny:
     #
 
-    cloudLimit = Snips.getConfig(INI_CLOUD_LIMIT, onePrefix = device)
+    cloudLimit = Snips.getConfig(INI_CLOUD_LIMIT)
     elseif weather != nothing && weather[:clouds] != nothing &&
            weather[:clouds] >= cloudLimit
         Snips.printLog("opening sun shield because of clouds.")

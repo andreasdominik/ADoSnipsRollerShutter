@@ -6,6 +6,7 @@ devices=garden_window,small_lanay,dining_lanay
 # before sunset (if a weather api is configured):
 #
 open_before_sunset=30
+open_cloud_limit=80
 
 # roller shutter to garden:
 #
@@ -14,8 +15,6 @@ garden_window:name=big,garden
 garden_window:comment=window to garden
 garden_window:driver=shelly25
 garden_window:sunshield=38
-garden_window:open_before_sunset=30
-garden_window:open_cloud_limit=80
 garden_window:ip=192.168.0.10
 
 # roller shutter to lanay:
@@ -25,8 +24,6 @@ small_lanay:name=small
 small_lanay:comment=window to lanay
 small_lanay:driver=shelly25
 small_lanay:sunshield=42
-small_lanay:open_before_sunset=30
-small_lanay:open_cloud_limit=80
 small_lanay:ip=192.168.0.11
 
 # dining:
@@ -36,7 +33,5 @@ dining_lanay:name=lanay,dining
 dining_lanay:comment=2nd window to lanay
 dining_lanay:driver=shelly25
 dining_lanay:sunshield=38
-dining_lanay:open_before_sunset=30
-dining_lanay:open_cloud_limit=80
 dining_lanay:ip=192.168.0.112
 [secret]
