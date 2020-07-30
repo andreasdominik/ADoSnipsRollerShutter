@@ -234,6 +234,8 @@ function checkConfig(d)
            Snips.isConfigValid(INI_COMMENT) &&
            Snips.isConfigValid(INI_DRIVER, regex = r"shelly25") &&
            Snips.isConfigValid(INI_SUN_SHIELD, regex = r"^\d+$") &&
+           Snips.isConfigValid(INI_SUNSET, regex = r"^\d+$") &&
+           Snips.isConfigValid(INI_CLOUD_LIMIT, regex = r"^\d+$") &&
            Snips.isConfigValid(INI_IP, regex = r"\d+\.\d+\.\d+\.\d+")
 
     Snips.resetConfigPrefix()
