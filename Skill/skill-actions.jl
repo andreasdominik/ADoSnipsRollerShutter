@@ -159,9 +159,8 @@ function triggerRollerShutter(topic, payload)
         Snips.printLog("closing roller shutter $(trigger[:device])")
         doMove(trigger[:device], Dict(:action => "close", :percent => nothing))
     elseif command == "sunshield"
-        cloudLimit = SUNSHIELD_CLOUD_LIMIT
         Snips.printLog("sun shield for roller shutter $(trigger[:device])")
-        doSunshield(trigger[:device], cloudLimit)
+        doSunshield(trigger[:device])
     else
         Snips.printLog("opening roller shutter $(trigger[:device])")
         doMove(trigger[:device], Dict(:action => "open", :percent => nothing))

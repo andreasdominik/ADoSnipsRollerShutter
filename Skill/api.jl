@@ -23,7 +23,7 @@ end
 """
 Only close to perc percent if clouds are < limit and > 1h before sunset
 """
-function doSunshield(device, clouds)
+function doSunshield(device)
 
     ip = Snips.getConfig(INI_IP, onePrefix = device)
     perc = tryparse(Int, Snips.getConfig(INI_SUN_SHIELD, onePrefix = device))
@@ -34,15 +34,19 @@ function doSunshield(device, clouds)
 
     # open if sunset is coming soon:
     #
-    if weather != nothing && weather[:sunset] < Dates.now()
+    sunsetMinutes = Snips.getConfig(INI_SUNSET, onePrefix = device)
+    if weather != nothing && weather[:sunset] < Dates.now() +
+                                                Dates.Minute(sunsetMinutes)
         Snips.printLog("opening sun shield beacuse of sunset.")
         Snips.moveShelly25roller(ip, :open)
 
     # open if clody and close if sunny:
     #
+
+    cloudLimit = Snips.getConfig(INI_CLOUD_LIMIT, onePrefix = device)
     elseif weather != nothing && weather[:clouds] != nothing &&
-           weather[:clouds] >= clouds
-        Snips.printLog("opening sun shield beacuse of clouds.")
+           weather[:clouds] >= cloudLimit
+        Snips.printLog("opening sun shield because of clouds.")
         Snips.moveShelly25roller(ip, :open)
     else
         Snips.printLog("closing sun shield beacuse of sun.")
