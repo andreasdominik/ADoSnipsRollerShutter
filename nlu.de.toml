@@ -48,6 +48,7 @@ slot_type = "ListOfValues"
         [Action.synonyms]
         "open" = ["öffne", "auf$"]
         "close" = ["schließe", "zu$"]
+        "sunshield" = ["verdunkle", "auf Sonnenschutz"]
 
 [percentClosed]
 slot_type = "Number"
@@ -57,7 +58,7 @@ slot_type = "ListOfValues"
 
         [partlyClosed.synonyms]
         "almost" = ["fast ganz", "fast"]
-        "half" = ["halb", "zur Hälfte", "zum Sonnenschutz", "auf Sonnenschutz", "Sonnenschutz"]
+        "half" = ["halb", "zur Hälfte", "zum Sonnenschutz"]
         "threeQuarter" = ["drei viertel", "dreiviertel"]
 
 

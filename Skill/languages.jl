@@ -5,6 +5,7 @@ Snips.addText("de", :ok, ["OK", "Bitte sehr", "Ich steuere den Rollladen"])
 
 Snips.addText("de", :i_open, "Ich öffne den")
 Snips.addText("de", :i_close, "Ich schließe den")
+Snips.addText("de", :i_sunshield, "Ich verdunkle den")
 Snips.addText("de", :roller_shutter, "Rollladen")
 
 
@@ -15,4 +16,5 @@ Snips.addText("en", :ok, ["OK", "alright", "I am moving the roller"])
 
 Snips.addText("en", :i_open, "I am opening the")
 Snips.addText("en", :i_close, "I am closing the")
+Snips.addText("en", :i_sunshield, "I am dimming the")
 Snips.addText("en", :roller_shutter, "roller shutter")

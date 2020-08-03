@@ -16,6 +16,8 @@ function doMove(device, slots)
     elseif slots[:action] == "close"
         Snips.moveShelly25roller(ip, :close)
 
+    elseif slots[:action] == "sunshield"
+        doSunshield(device)
     end
 end
 

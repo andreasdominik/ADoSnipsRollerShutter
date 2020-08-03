@@ -33,7 +33,7 @@ function rollerShutterAction(topic, payload)
         return true
     end
 
-    if !(slots[:action] in ["open", "close"])
+    if !(slots[:action] in ["open", "close", "sunshield"])
         Snips.publishEndSession(:dunno)
         return true
     end
@@ -50,7 +50,13 @@ function rollerShutterAction(topic, payload)
         return true
     else
         Snips.publishEndSession("")
-        actionText = slots[:action] == "open" ? Snips.langText(:i_open) : Snips.langText(:i_close)
+        if slots[:action] == "open"
+            actionText = Snips.langText(:i_open)
+        elseif slots[:action] == "sunshield"
+            actionText = Snips.langText(:i_sunshield)
+        else
+            actionText = Snips.langText(:i_close)
+        end
 
         for d in matchedDevices
             Snips.printDebug("Try device $d")
