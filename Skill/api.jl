@@ -30,7 +30,7 @@ function doSunshield(device)
     if perc == nothing
         perc = 15
     end
-    weather = Snips.getOpenWeather()
+    weather = Snips.getWeather()
 
     # open if sunset is coming soon:
     #
