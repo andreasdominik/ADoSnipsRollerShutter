@@ -52,7 +52,7 @@ function doSunshield(device)
     elseif weather[:clouds] != nothing && weather[:clouds] >= cloudLimit
         Snips.printLog("opening sun shield because of clouds.")
         Snips.moveShelly25roller(ip, :open)
-        
+
     else
         Snips.printLog("closing sun shield beacuse of sun.")
         Snips.moveShelly25roller(ip, :to_pos, pos = perc)
