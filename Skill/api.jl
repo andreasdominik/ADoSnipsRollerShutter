@@ -29,12 +29,16 @@ function doSunshield(device)
 
     ip = Snips.getConfig(INI_IP, onePrefix = device)
     sunsetMinutes = Snips.getConfig(INI_SUNSET)
-    cloudLimit = Snips.getConfig(INI_CLOUD_LIMIT)
+    cloudLimit = tryparse(Int, Snips.getConfig(INI_CLOUD_LIMIT))
+    if cloudLimit == nothing
+        cloudLimit = 80
+    end
 
     perc = tryparse(Int, Snips.getConfig(INI_SUN_SHIELD, onePrefix = device))
     if perc == nothing
         perc = 15
     end
+
     weather = Snips.getWeather()
 
     if weather == nothing
@@ -43,7 +47,8 @@ function doSunshield(device)
 
     # open if sunset is coming soon:
     #
-    elseif weather[:sunset] < Dates.now() + Dates.Minute(sunsetMinutes)
+    elseif weather[:sunset] != nothing &&
+           weather[:sunset] < Dates.now() + Dates.Minute(sunsetMinutes)
         Snips.printLog("opening sun shield beacuse of sunset.")
         Snips.moveShelly25roller(ip, :open)
 
@@ -58,6 +63,39 @@ function doSunshield(device)
         Snips.moveShelly25roller(ip, :to_pos, pos = perc)
     end
 end
+# function doSunshield(device)
+#
+#     ip = Snips.getConfig(INI_IP, onePrefix = device)
+#     sunsetMinutes = Snips.getConfig(INI_SUNSET)
+#     cloudLimit = Snips.getConfig(INI_CLOUD_LIMIT)
+#
+#     perc = tryparse(Int, Snips.getConfig(INI_SUN_SHIELD, onePrefix = device))
+#     if perc == nothing
+#         perc = 15
+#     end
+#     weather = Snips.getWeather()
+#
+#     if weather == nothing
+#         Snips.printLog("closing sun shield beacuse of missing weather information.")
+#         Snips.moveShelly25roller(ip, :to_pos, pos = perc)
+#
+#     # open if sunset is coming soon:
+#     #
+#     elseif weather[:sunset] < Dates.now() + Dates.Minute(sunsetMinutes)
+#         Snips.printLog("opening sun shield beacuse of sunset.")
+#         Snips.moveShelly25roller(ip, :open)
+#
+#     # open if cloudy and close if sunny:
+#     #
+#     elseif weather[:clouds] != nothing && weather[:clouds] >= cloudLimit
+#         Snips.printLog("opening sun shield because of clouds.")
+#         Snips.moveShelly25roller(ip, :open)
+#
+#     else
+#         Snips.printLog("closing sun shield beacuse of sun.")
+#         Snips.moveShelly25roller(ip, :to_pos, pos = perc)
+#     end
+# end
 
 
 
